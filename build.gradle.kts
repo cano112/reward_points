@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.flywaydb:flyway-core:10.7.1")
 	implementation("org.zalando:problem-spring-web-starter:0.29.1")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	implementation("org.zalando:logbook-spring-boot-starter:3.7.2")
 
 	runtimeOnly("org.flywaydb:flyway-database-postgresql:10.7.1")
@@ -31,8 +32,8 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
-	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
+	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("io.rest-assured:spring-mock-mvc:5.4.0")
 	testImplementation("uk.co.datumedge:hamcrest-json:0.2")
 	testImplementation("org.assertj:assertj-core:3.25.3")

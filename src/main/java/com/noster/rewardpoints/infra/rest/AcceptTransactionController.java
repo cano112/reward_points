@@ -43,5 +43,6 @@ public class AcceptTransactionController {
             @JsonProperty("transaction_id") @NotNull UUID transactionId,
             @JsonProperty("transaction_amount") @NotNull @Min(0) BigDecimal transactionAmount,
             @JsonProperty("timestamp") @NotNull Instant timestamp
-    ) {}
+    ) {
+    }
 }

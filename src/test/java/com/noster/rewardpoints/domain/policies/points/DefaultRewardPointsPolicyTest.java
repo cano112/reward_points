@@ -69,4 +69,6 @@ class DefaultRewardPointsPolicyTest {
         // Then
         assertThat(points).isEqualTo(new Points(0));
     }
+
+    // TODO: Proper decimals handling
 }
