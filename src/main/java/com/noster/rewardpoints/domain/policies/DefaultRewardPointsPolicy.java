@@ -13,7 +13,7 @@ public class DefaultRewardPointsPolicy implements RewardPointsGrantPolicy {
                 .amount()
                 .setScale(0, RoundingMode.DOWN)
                 .intValue();
-        if (amountRounded >= 50 && amountRounded < 100) {
+        if (amountRounded >= 50 && amountRounded <= 100) {
             return new Points(amountRounded - 50);
         }
         return null;

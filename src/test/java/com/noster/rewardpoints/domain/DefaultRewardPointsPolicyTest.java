@@ -35,4 +35,16 @@ class DefaultRewardPointsPolicyTest {
         // Then
         assertThat(points).isEqualTo(new Points(0));
     }
+
+    @Test
+    void shouldReturnPoints_given100$Transaction() {
+        // Given
+        final var amount = new MonetaryAmount(100);
+
+        // When
+        final Points points = policy.grant(amount);
+
+        // Then
+        assertThat(points).isEqualTo(new Points(50));
+    }
 }
