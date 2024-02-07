@@ -21,7 +21,10 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.flywaydb:flyway-core:10.7.1")
+	implementation("org.zalando:problem-spring-web-starter:0.29.1")
+	implementation("org.zalando:logbook-spring-boot-starter:3.7.2")
 
 	runtimeOnly("org.flywaydb:flyway-database-postgresql:10.7.1")
 	runtimeOnly("org.postgresql:postgresql")

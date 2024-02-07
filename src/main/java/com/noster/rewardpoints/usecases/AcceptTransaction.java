@@ -35,7 +35,8 @@ public class AcceptTransaction {
         rewardPointsRepository.save(new RewardPoints(
                 request.transactionId,
                 request.userId,
-                points
+                points,
+                request.timestamp
         ));
     }
 }

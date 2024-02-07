@@ -1,5 +1,6 @@
 package com.noster.rewardpoints;
 
+import com.noster.rewardpoints.api.Api;
 import org.jooq.DSLContext;
 import org.jooq.generated.Tables;
 import org.junit.jupiter.api.AfterEach;
@@ -27,12 +28,12 @@ class RewardPointsAcceptanceTest {
 
     private final DSLContext jooq;
 
-    private final MockMvc mockMvc;
+    private final Api api;
 
     @Autowired
     RewardPointsAcceptanceTest(DSLContext jooq, MockMvc mockMvc) {
         this.jooq = jooq;
-        this.mockMvc = mockMvc;
+        this.api = new Api(mockMvc);
     }
 
     @AfterEach
@@ -49,14 +50,14 @@ class RewardPointsAcceptanceTest {
         givenTransaction(BigDecimal.valueOf(100), Instant.parse("2020-11-01T10:00:00Z"), userId);
         givenTransaction(BigDecimal.valueOf(100), Instant.parse("2020-12-01T10:00:00Z"), userId);
 
-        given()
-                .mockMvc(mockMvc)
-                .when()
-                .get(STR."/users/\{userId}/rewards/points/summary", Map.of(
-                        "start", "2020-10-01T00:00:00Z",
-                        "end", "2020-12-31:23:59:59Z",
-                        "aggregations", "MONTHLY,TOTAL"
-                ))
+        api.getSummary(
+                        userId,
+                        Map.of(
+                                "start", "2020-10-01T00:00:00Z",
+                                "end", "2020-12-31:23:59:59Z",
+                                "aggregations", "MONTHLY,TOTAL"
+                        )
+                )
                 .then()
                 .status(HttpStatus.OK)
                 .body(sameJSONAs(
@@ -92,18 +93,9 @@ class RewardPointsAcceptanceTest {
     }
 
     private void givenTransaction(BigDecimal amount, Instant timestamp, UUID userId) {
-        given()
-                .mockMvc(mockMvc)
-                .when()
-                .post(STR."/users/\{userId}/rewards/transactions", STR."""
-                        {
-                        	"transaction_id": "\{UUID.randomUUID()}",
-                        	"transaction_amount": \{amount},
-                            "timestamp": "\{DateTimeFormatter.ISO_INSTANT.format(timestamp)}"
-                        }
-                        """)
+        api.postTransaction(userId, amount, timestamp)
                 .then()
-                .status(HttpStatus.CREATED);
+                .status(HttpStatus.NO_CONTENT);
     }
 
 }
