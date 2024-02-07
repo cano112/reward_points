@@ -1,7 +1,5 @@
-package com.noster.rewardpoints.domain;
+package com.noster.rewardpoints.domain.policies.points;
 
-import com.noster.rewardpoints.domain.entities.RewardPoints;
-import com.noster.rewardpoints.domain.policies.DefaultRewardPointsPolicy;
 import com.noster.rewardpoints.domain.values.MonetaryAmount;
 import com.noster.rewardpoints.domain.values.Points;
 import org.junit.jupiter.api.Test;

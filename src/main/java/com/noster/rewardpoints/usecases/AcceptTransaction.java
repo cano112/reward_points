@@ -1,9 +1,9 @@
 package com.noster.rewardpoints.usecases;
 
 import com.noster.rewardpoints.domain.entities.RewardPoints;
-import com.noster.rewardpoints.domain.policies.DefaultRewardPointsPolicy;
+import com.noster.rewardpoints.domain.policies.points.DefaultRewardPointsPolicy;
+import com.noster.rewardpoints.domain.policies.points.RewardPointsGrantPolicy;
 import com.noster.rewardpoints.domain.values.MonetaryAmount;
-import com.noster.rewardpoints.domain.policies.RewardPointsGrantPolicy;
 import com.noster.rewardpoints.usecases.ports.RewardPointsRepository;
 import org.springframework.stereotype.Service;
 
