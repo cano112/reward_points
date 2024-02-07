@@ -1,8 +1,8 @@
 package com.noster.rewardpoints.infra.db;
 
 import com.noster.rewardpoints.PostgresConfiguration;
-import com.noster.rewardpoints.domain.RewardPoints;
-import com.noster.rewardpoints.usecases.ports.RewardPointsRepository;
+import com.noster.rewardpoints.domain.entities.RewardPoints;
+import com.noster.rewardpoints.domain.values.Points;
 import org.jooq.DSLContext;
 import org.jooq.generated.tables.records.RewardPointsRecord;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class JooqRewardPointsRepositoryTest {
     @Test
     void shouldSaveRewardPoints() {
         // Given
-        final var points = new RewardPoints(REWARD_POINTS_ID, TRANSACTION_ID, USER_ID, 5);
+        final var points = new RewardPoints(REWARD_POINTS_ID, TRANSACTION_ID, USER_ID, new Points(5));
 
         // When
         rewardPointsRepository.save(points);

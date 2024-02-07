@@ -1,6 +1,6 @@
 package com.noster.rewardpoints.usecases.ports;
 
-import com.noster.rewardpoints.domain.RewardPoints;
+import com.noster.rewardpoints.domain.entities.RewardPoints;
 
 public interface RewardPointsRepository {
 

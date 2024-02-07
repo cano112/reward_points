@@ -1,6 +1,6 @@
 package com.noster.rewardpoints.infra.db;
 
-import com.noster.rewardpoints.domain.RewardPoints;
+import com.noster.rewardpoints.domain.entities.RewardPoints;
 import com.noster.rewardpoints.usecases.ports.RewardPointsRepository;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
@@ -22,7 +22,7 @@ public class JooqRewardPointsRepository implements RewardPointsRepository {
                 .set(REWARD_POINTS.ID, rewardPoints.id())
                 .set(REWARD_POINTS.TRANSACTION_ID, rewardPoints.transactionId())
                 .set(REWARD_POINTS.USER_ID, rewardPoints.userId())
-                .set(REWARD_POINTS.POINTS, rewardPoints.points())
+                .set(REWARD_POINTS.POINTS, rewardPoints.points().value())
                 .execute();
     }
 }

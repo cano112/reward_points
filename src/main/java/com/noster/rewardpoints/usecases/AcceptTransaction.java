@@ -1,8 +1,9 @@
 package com.noster.rewardpoints.usecases;
 
-import com.noster.rewardpoints.domain.DefaultRewardPointsPolicy;
-import com.noster.rewardpoints.domain.MonetaryAmount;
-import com.noster.rewardpoints.domain.RewardPointsGrantPolicy;
+import com.noster.rewardpoints.domain.entities.RewardPoints;
+import com.noster.rewardpoints.domain.policies.DefaultRewardPointsPolicy;
+import com.noster.rewardpoints.domain.values.MonetaryAmount;
+import com.noster.rewardpoints.domain.policies.RewardPointsGrantPolicy;
 import com.noster.rewardpoints.usecases.ports.RewardPointsRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,11 @@ public class AcceptTransaction {
 
 
     public void with(Request request) {
-        final var rewardPoints = rewardPointsGrantPolicy.grant(request.amount);
-        rewardPointsRepository.save(rewardPoints);
+        final var points = rewardPointsGrantPolicy.grant(request.amount);
+        rewardPointsRepository.save(new RewardPoints(
+                request.transactionId,
+                request.userId,
+                points
+        ));
     }
 }
