@@ -1,21 +1,15 @@
 package com.noster.rewardpoints;
 
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.jooq.DSLContext;
 import org.jooq.generated.Tables;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -23,24 +17,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.*;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Testcontainers
-class RewardPointsApplicationTests {
-
-    @Container
-    @ServiceConnection
-    static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:16");
+@Import(PostgresConfiguration.class)
+class RewardPointsAcceptanceTest {
 
     private final DSLContext jooq;
 
     private final MockMvc mockMvc;
 
     @Autowired
-    RewardPointsApplicationTests(DSLContext jooq, MockMvc mockMvc) {
+    RewardPointsAcceptanceTest(DSLContext jooq, MockMvc mockMvc) {
         this.jooq = jooq;
         this.mockMvc = mockMvc;
     }

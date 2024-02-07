@@ -32,6 +32,8 @@ dependencies {
 	testImplementation("org.testcontainers:postgresql")
 	testImplementation("io.rest-assured:spring-mock-mvc:5.4.0")
 	testImplementation("uk.co.datumedge:hamcrest-json:0.2")
+	testImplementation("org.assertj:assertj-core:3.25.3")
+
 	jooqCodegen("org.postgresql:postgresql")
 	jooqCodegen("org.jooq:jooq-meta-extensions:3.19.3")
 }
