@@ -19,6 +19,6 @@ public class DefaultRewardPointsPolicy implements RewardPointsGrantPolicy {
         if (amountRounded > 100) {
             return new Points(50 + 2 * (amountRounded - 100));
         }
-        return null;
+        return new Points(0);
     }
 }
