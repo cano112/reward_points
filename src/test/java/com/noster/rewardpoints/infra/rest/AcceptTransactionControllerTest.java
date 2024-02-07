@@ -19,9 +19,7 @@ import java.util.UUID;
 import static org.mockito.BDDMockito.then;
 
 @WebMvcTest(value = AcceptTransactionController.class)
-@Import({
-        LogbookAutoConfiguration.class,
-})
+@Import(LogbookAutoConfiguration.class)
 class AcceptTransactionControllerTest {
 
     private static final UUID USER_ID = UUID.fromString("f6941dd8-6e08-4c56-b945-34d17112e0e2");

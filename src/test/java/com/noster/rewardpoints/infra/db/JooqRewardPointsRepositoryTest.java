@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,6 +68,10 @@ public class JooqRewardPointsRepositoryTest {
                         Instant.parse("2020-10-10T10:00:00Z")
                 );
     }
+
+    // TODO: Missing tests for #pointsGroupedByMonth:
+    //  * userId condition
+    //  * start/end date conditions (especially values just on the range limit)
 
 
 }

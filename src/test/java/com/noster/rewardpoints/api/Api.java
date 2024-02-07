@@ -31,7 +31,7 @@ public class Api {
     }
 
     public MockMvcResponse postTransaction(UUID userId, BigDecimal amount, Instant timestamp) {
-        return postTransaction(UUID.randomUUID(), amount, timestamp, userId);
+        return postTransaction(userId, amount, timestamp, UUID.randomUUID());
     }
 
     public MockMvcResponse postTransaction(UUID userId, BigDecimal amount, Instant timestamp, UUID transactionId) {
@@ -54,7 +54,8 @@ public class Api {
     public MockMvcResponse getSummary(UUID userId, Map<String, String> queryParams) {
         return given()
                 .mockMvc(mockMvc)
+                .queryParams(queryParams)
                 .when()
-                .get(STR."/users/\{userId}/rewards/points/summary", queryParams);
+                .get(STR."/users/\{userId}/rewards/points/summary");
     }
 }

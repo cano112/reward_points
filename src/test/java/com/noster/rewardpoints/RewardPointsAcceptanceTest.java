@@ -14,11 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static uk.co.datumedge.hamcrest.json.SameJSONAs.sameJSONAs;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -54,8 +52,8 @@ class RewardPointsAcceptanceTest {
                         userId,
                         Map.of(
                                 "start", "2020-10-01T00:00:00Z",
-                                "end", "2020-12-31:23:59:59Z",
-                                "aggregations", "MONTHLY,TOTAL"
+                                "end", "2020-12-31T23:59:59Z",
+                                "group_by", "MONTH"
                         )
                 )
                 .then()
@@ -64,27 +62,27 @@ class RewardPointsAcceptanceTest {
                         //language=JSON
                         """
                                 {
-                                    "user_id": "fa4deba2-3954-45a0-82c9-582244e1d135",
-                                    "period": {
-                                        "start": "2020-10-01T00:00:00Z",
-                                        "end": "2020-12-31:23:59:59Z"
-                                    },
-                                    "aggregations": {
-                                        "monthly": [
-                                            {
-                                                "month": 10,
-                                                "points": 140
-                                            },
-                                            {
-                                                "month": 11,
-                                                "points": 50
-                                            },
-                                            {
-                                                "month": 12,
-                                                "points": 50
-                                            }
-                                        ],
-                                        "total": 240
+                                    "points_summary": {
+                                        "grouped": {
+                                            "by": "MONTH",
+                                            "entries": [
+                                                {
+                                                    "group": 10,
+                                                    "points": 140
+                                                },
+                                                {
+                                                    "group": 11,
+                                                    "points": 50
+                                                },
+                                                {
+                                                    "group": 12,
+                                                    "points": 50
+                                                }
+                                            ]
+                                        },
+                                        "total": {
+                                            "points": 240
+                                        }
                                     }
                                 }
                                     """
