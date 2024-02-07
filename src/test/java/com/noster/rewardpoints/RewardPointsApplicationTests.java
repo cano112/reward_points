@@ -109,7 +109,6 @@ class RewardPointsApplicationTests {
                         {
                         	"transaction_id": "\{UUID.randomUUID()}",
                         	"transaction_amount": \{amount},
-                            "currency": "USD",
                             "timestamp": "\{DateTimeFormatter.ISO_INSTANT.format(timestamp)}"
                         }
                         """)
